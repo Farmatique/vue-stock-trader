@@ -13,7 +13,7 @@
 				<button class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1">Save & Load <span class="caret"></span></button>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 					<li><a @click="loadFromDatabase">Load from database</a></li>
-					<li><a class="save" @click="saveToDatabase">Save</a></li>
+					<li><a class="save" @click="saveToDatabase">Save to database</a></li>
 				</ul>
 			</div>
 			<div class="your-funds">
