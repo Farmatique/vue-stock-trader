@@ -51,7 +51,9 @@ export const store = new Vuex.Store({
 					}
 
 				} else if (payload.stock.quantity == 0){
-					alert('Out of stock')
+
+					/* this block is not necessary, since button becomes 'disabled' when quantity reaches 0 */
+					alert('Out of stock');
 				} else {
 					alert('Currently you cannot buy more than ' + payload.stock.quantity +' stocks')
 				}

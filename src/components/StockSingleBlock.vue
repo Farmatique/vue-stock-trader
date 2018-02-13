@@ -1,6 +1,6 @@
 <template>
 	<div class="col-md-6 col-sm-6">
-		<div class="panel panel-default">
+		<div class="panel panel-success">
 			<div class="panel-heading">
 				<p>Name: {{ stock.name }}</p>
 				<p>Quantity: {{ stock.quantity }}</p>
@@ -8,7 +8,7 @@
 			</div>
 			<div class="panel-body">
 				<input-decimal :quantity="quantity" @onUpdateInput="function(data){quantity = data}"></input-decimal>
-				<button class="btn btn-default" @click="buy(stock)">Buy</button>
+				<button class="btn btn-success" :disabled="stock.quantity == 0" @click="buy(stock)">Buy</button>
 			</div>
 		</div>
 	</div>

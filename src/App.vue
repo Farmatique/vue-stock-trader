@@ -1,11 +1,13 @@
 <template>
   <div class="container">
-    <div class="panel panel-default">
+    <div class="panel panel-info">
       <header class="panel-heading">
         <header-component></header-component>
       </header>
       <div class="panel-body">
-        <router-view></router-view>
+        <transition mode="out-in" name="fade"> 
+          <router-view></router-view>
+        </transition>  
       </div>
     </div>
   </div>
@@ -22,7 +24,17 @@
 </script>
 
 <style>
-  .logo a{
-    line-height: 40px;
+  .fade-enter{
+    opacity: 0;
+  }
+  .fade-enter-active{
+    transition: all .3s;
+  }
+  .fade-leave{
+    opacity: 1;
+  }
+  .fade-leave-active{
+    opacity: 0;
+    transition: all .2s;
   }
 </style>

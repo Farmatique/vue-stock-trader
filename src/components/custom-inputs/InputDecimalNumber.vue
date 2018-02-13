@@ -1,6 +1,6 @@
 <template>
 
-	<input type="text"
+	<input type="text" class="form-control"
 		:value="quantity"
 		@input="validateInput($event)"
 	>
@@ -21,3 +21,10 @@
 		}
 	}
 </script>
+
+<style scoped>
+	input.form-control{
+		width: auto;
+		float: left;
+	}
+</style>
