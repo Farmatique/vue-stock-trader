@@ -82,9 +82,10 @@ export const store = new Vuex.Store({
 				elem.price = Math.floor((Math.random()*100)+40);
 			});
 		},
-		fetchStocks(state, payload){
-			console.log(payload);
-			state.stocks = payload;
+		applyLoadedData(state, data){
+			//console.log(data);
+			state.stocks = data.stocks;
+			state.myFunds = data.funds;
 		}
 	}
 })

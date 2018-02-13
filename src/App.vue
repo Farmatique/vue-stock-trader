@@ -22,5 +22,7 @@
 </script>
 
 <style>
-
+  .logo a{
+    line-height: 40px;
+  }
 </style>

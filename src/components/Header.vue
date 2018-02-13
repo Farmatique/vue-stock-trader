@@ -6,13 +6,16 @@
 		<ul class="nav nav-pills col-md-6 col-sm-6">
 			<router-link tag="li" active-class="active" to="/portfolio"><a>Portfolio</a></router-link>
 			<router-link tag="li" active-class="active" to="/stocks"><a>Stocks</a></router-link>
-			<li @click="randomizePrice">End Day</li>
+			<li @click="randomizePrice"><a>End Day</a></li>
 		</ul>
-		<div class="col-md-2 col-sm-2">
-			<button @click="loadFromDatabase">Load from database</button>
-			<button class="save" @click="saveToDatabase">Save</button>
+		<div class="dropdown col-md-2 col-sm-2">
+			<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1">Save & Load <span class="caret"></span></button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a @click="loadFromDatabase">Load from database</a></li>
+				<li><a class="save" @click="saveToDatabase">Save</a></li>
+			</ul>
 		</div>
-		<div class="col-md-2 col-sm-2">
+		<div class="your-funds col-md-2 col-sm-2">
 			Your funds: {{ displayFunds }}$
 		</div>
 	</div>
@@ -34,9 +37,9 @@
 				this.$store.commit('randomizePrice')
 			},
 			saveToDatabase(){
-				this.$http.put('https://vue-http-353ff.firebaseio.com/data.json', this.$store.state.stocks)
+				this.$http.put('https://vue-http-353ff.firebaseio.com/data.json', {stocks: this.$store.state.stocks, funds: this.$store.state.myFunds})
 					.then(response => {
-						console.log(response)
+						//console.log(response)
 					}, error => {
 						console.error(error)
 					})
@@ -48,12 +51,21 @@
 					})
 					.then(data => {
 						const receivedData = [];
-						for(let key in data){
-							receivedData.push(data[key])
+						for(let key in data.stocks){
+							receivedData.push(data.stocks[key])
 						};
-						this.$store.commit('fetchStocks', receivedData);
+
+						this.$store.commit('applyLoadedData', {stocks: receivedData, funds: data.funds});
 					})
 			}
 		}
 	}
 </script>
+<style>
+  .logo a{
+    line-height: 40px;
+  }
+  .your-funds{
+  	line-height: 40px;
+  }
+</style>
