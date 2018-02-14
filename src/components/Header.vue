@@ -1,30 +1,35 @@
 <template>
 	<div class="row">
-		<div class="logo col-md-2 col-sm-2">
+		<div class="logo navbar-brand">
 			<router-link tag="a" exact to="/">Stock Trader</router-link>
 		</div>
-		<ul class="nav nav-pills col-md-4 col-sm-4">
+		<ul class="nav navbar-nav nav-pills">
 			<router-link tag="li" active-class="active" to="/portfolio"><a>Portfolio</a></router-link>
 			<router-link tag="li" active-class="active" to="/stocks"><a>Stocks</a></router-link>
-			<li @click="randomizePrice"><a>End Day</a></li>
 		</ul>
-		<div class="right-side col-md-6 col-sm-6">
-			<div class="dropdown">
-				<button class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1">Save & Load <span class="caret"></span></button>
+		<ul class="nav navbar-nav navbar-right right-side">
+			<li class="end-day" @click="randomizePrice"><a class="btn btn-success">End Day</a></li>
+			<li class="dropdown" :class="{open: dropdownIsOpened}" @click="dropdownIsOpened = !dropdownIsOpened">
+				<a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1">Save & Load <span class="caret"></span></a>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 					<li><a @click="loadFromDatabase">Load from database</a></li>
 					<li><a class="save" @click="saveToDatabase">Save to database</a></li>
 				</ul>
-			</div>
-			<div class="your-funds">
-				Your funds: {{ displayFunds }}$
-			</div>
-		</div>
+			</li>
+			<li class="your-funds">
+				<a>Your funds: {{ displayFunds }}$</a>
+			</li>
+		</ul>
 	</div>
 </template>
 
 <script>
 	export default{
+		data(){
+			return {
+				dropdownIsOpened: false
+			}
+		},
 		computed: {
 			displayFunds(){
 				return this.$store.getters.getFunds;
@@ -66,24 +71,36 @@
 <style>
 	.right-side{
 		text-align: right;
+		margin: 0;
 	}
   .logo a{
-    line-height: 40px;
     font-weight: 600;
     color: black;
     text-decoration: underline;
   }
   .your-funds{
-  	padding-left: 15px;
   	font-size: 1.2em;
   	font-weight: 600;
-  	line-height: 40px;
-  	display: inline-block;
+  }
+  .your-funds a:hover{
+		cursor: initial;
+		background-color: transparent !important;
   }
   .dropdown{
   	display: inline-block;
   }
+  .dropdown > .btn{
+  	color: black;
+  }
   .dropdown-menu > li > a{
   	cursor: pointer;
+  }
+  .end-day a{
+  	color: #000;
+  }
+  .end-day a:hover{
+		background-color: transparent !important;
+		cursor: pointer;
+		color: #000;
   }
 </style>

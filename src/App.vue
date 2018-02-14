@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="panel panel-info">
-      <header class="panel-heading">
+      <header class="panel-heading navbar">
         <header-component></header-component>
       </header>
       <div class="panel-body">
